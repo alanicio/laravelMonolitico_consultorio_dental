@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -14,7 +15,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $patients=Patient::all();
+        return view('patient.index',['patients'=>$patients]);
     }
 
     /**
@@ -24,7 +26,14 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patient.patient',['method'=>'POST']);
+        $viewInjection=[
+            'method'=>'POST',
+            'route'=>'patients.store',
+            'buttonText'=>'Guardar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+        ];
+        return view('patient.form',$viewInjection);
     }
 
     /**
@@ -35,7 +44,10 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $patient=new Patient($request->all());
+        $patient->user_id=User::create($request->all())->id;
+        $patient->save();
+        return $this->index();
     }
 
     /**

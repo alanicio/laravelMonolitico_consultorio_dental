@@ -13,7 +13,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{route('patients.create')}}">Agregar</a>
-          <a class="dropdown-item" href="#">Mostrar</a>
+          <a class="dropdown-item" href="{{route('patients.index')}}">Mostrar</a>
         </div>
       </li>
 

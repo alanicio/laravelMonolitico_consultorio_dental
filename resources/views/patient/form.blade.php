@@ -17,9 +17,9 @@
     </div>
 
     <div class="form-group col-md-2">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
+      <label for="ailments">Padecimientos previos</label>
+      <select id="ailments" name="ailments" class="form-control">
+        <option selected>--</option>
         <option>...</option>
       </select>
     </div>

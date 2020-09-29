@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-})->name('home')->middleware('auth');;
+})->name('home')->middleware('auth');
 
-Route::resource('patients', App\Http\Controllers\PatientController::class);
+Route::resource('patients', App\Http\Controllers\PatientController::class)->middleware('auth');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
