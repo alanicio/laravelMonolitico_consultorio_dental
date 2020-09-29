@@ -10,7 +10,7 @@
 
 		  	<div class="form-group col-md-2">
 		      <label for="date">Fecha de cita</label>
-		      <input type="text" class="form-control" id="date" name="date" required="" {{$readOnly}}
+		      <input type="date" class="form-control" id="date" name="date" required="" {{$readOnly}}
 		       value="{{isset($appointment)?$appointment->date:null}}">
 		    </div>
 

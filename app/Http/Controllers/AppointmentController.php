@@ -51,7 +51,8 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         $appointment=new Appointment($request->all());
-        $appointment->user_id=User::create($request->all())->id;
+        $appointment->patient_id=$request->patient;
+        $appointment->doctor_id=$request->doctor;
         $appointment->medical_consultation_id=$request->medical_consultation;
         $appointment->save();
         return $this->index();
