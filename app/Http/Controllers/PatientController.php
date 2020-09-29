@@ -29,6 +29,7 @@ class PatientController extends Controller
         $viewInjection=[
             'method'=>'POST',
             'route'=>'patients.store',
+            'routeParameter'=>null,
             'buttonText'=>'Guardar',
             'rfcRequired'=>null,
             'readOnly'=>null,
@@ -62,6 +63,7 @@ class PatientController extends Controller
             'patient'=>$patient,
             'method'=>'GET',
             'route'=>'patients.index',
+            'routeParameter'=>null,
             'buttonText'=>'Volver',
             'rfcRequired'=>null,
             'readOnly'=>'readonly',
@@ -77,7 +79,16 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        $viewInjection=[
+            'patient'=>$patient,
+            'method'=>'PUT',
+            'route'=>'patients.update',
+            'routeParameter'=>$patient->id,
+            'buttonText'=>'Actualizar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+        ];
+        return view('patient.form',$viewInjection);
     }
 
     /**
@@ -89,7 +100,9 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $patient->user->update($request->all());
+        $patient->update($request->all());
+        return $this->index();
     }
 
     /**

@@ -2,9 +2,12 @@
 
 @section('content')
 	<link rel="stylesheet" href="{{ URL::asset('css/form.css') }}" />
+	{{$method}}
+	{{route($route,$routeParameter)}}
 	<div class="card">
-		<form method="{{$method}}" action="{{route($route)}}">
+		<form method="{{$method=='PUT'?'POST':$method}}" action="{{route($route,$routeParameter)}}">
 			@csrf
+			@method($method)
 		  <div class="form-row">
 
 		  	<div class="form-group col-md-2">

@@ -4,16 +4,16 @@
 	<div class="form-group col-md-2">
     @if(!$readOnly)
       <label for="blood_type">Tipo de sangre</label>
-      <select id="blood_type" name="blood_type" class="form-control">
-        <option selected>--blood type--</option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
+      <select id="blood_type" name="blood_type" class="form-control" value="">
+        <option {{isset($patient)?null:'selected'}}>--blood type--</option>
+        <option value="A+" {{isset($patient)?$patient->blood_type=='A+'?'selected':null:null}}>A+</option>
+        <option value="A-" {{isset($patient)?$patient->blood_type=='A-'?'selected':null:null}}>A-</option>
+        <option value="B+" {{isset($patient)?$patient->blood_type=='B+'?'selected':null:null}}>B+</option>
+        <option value="B-" {{isset($patient)?$patient->blood_type=='B-'?'selected':null:null}}>B-</option>
+        <option value="O+" {{isset($patient)?$patient->blood_type=='O+'?'selected':null:null}}>O+</option>
+        <option value="O-" {{isset($patient)?$patient->blood_type=='O-'?'selected':null:null}}>O-</option>
+        <option value="AB+" {{isset($patient)?$patient->blood_type=='AB+'?'selected':null:null}}>AB+</option>
+        <option value="AB-" {{isset($patient)?$patient->blood_type=='AB-'?'selected':null:null}}>AB-</option>
       </select>
     @else
       <label for="last_name">Tipo de sangre</label>
