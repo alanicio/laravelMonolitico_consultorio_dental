@@ -33,10 +33,12 @@
 			      	</a>
 			    </div>
 			    <div>
-			      	<form action="{{route('patients.destroy',$patient->id)}}" method="DELETE">
-			      		<a class="dropdown-item" type="submit">
+			      	<form action="{{route('patients.destroy',$patient->id)}}" method="POST">
+			      		@csrf
+			      		@method('DELETE')
+			      		<button class="dropdown-item" type="submit">
 			      			<i class="fas fa-trash-alt"></i>
-			      		</a>
+			      		</button>
 			      	</form>
 			    </div>
 			    <div>

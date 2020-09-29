@@ -2,9 +2,8 @@ td:last-child div{
 	display: inline-block !important;
 }
 
-a:hover{
+a:hover, button:hover{
 	color: #fd7e14 !important;
-	z-index: 100;
 }
 
 tbody tr:hover{
