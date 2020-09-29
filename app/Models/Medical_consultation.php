@@ -16,7 +16,7 @@ class Medical_consultation extends Model
     ];
 
     public function specialty(){
-    	return $this->belongsTo('App\Model\Specialty');
+    	return $this->belongsTo('App\Models\Specialty');
     }
 
     public function appointment(){

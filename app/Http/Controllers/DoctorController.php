@@ -107,6 +107,7 @@ class DoctorController extends Controller
     public function update(Request $request, Doctor $doctor)
     {
         $doctor->user->update($request->all());
+        $doctor->specialty_id=$request->specialty;
         $doctor->update($request->all());
         return $this->index();
     }
