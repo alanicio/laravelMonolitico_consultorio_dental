@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.2" last-position="0,0" last-zoom="1" max-obj-count="10"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="User" layer="0" collapse-mode="2" max-obj-count="9">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabla de pacientes.]]></comment>
+	<position x="680" y="120"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+		<comment><![CDATA[Identificador único del paciente.]]></comment>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="60"/>
+		<comment><![CDATA[Nombre del paciente]]></comment>
+	</column>
+	<column name="email">
+		<type name="varchar" length="80"/>
+		<comment><![CDATA[Correo del paciente]]></comment>
+	</column>
+	<column name="password">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="last_name" not-null="true">
+		<type name="varchar" length="80"/>
+		<comment><![CDATA[Apellidos del paciente]]></comment>
+	</column>
+	<column name="phone_number" not-null="true">
+		<type name="varchar" length="10"/>
+		<comment><![CDATA[Número telefonico del paciente]]></comment>
+	</column>
+	<column name="birthdate" not-null="true">
+		<type name="date" length="0"/>
+		<comment><![CDATA[Fecha de nacimiento del paciente.]]></comment>
+	</column>
+	<column name="rfc">
+		<type name="varchar" length="13"/>
+		<comment><![CDATA[Rfc del paciente.]]></comment>
+	</column>
+	<constraint name="User_pk" type="pk-constr" table="public.&quot;User&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Doctor" layer="0" collapse-mode="2" max-obj-count="4">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1120" y="180"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="professional_license" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<constraint name="Doctor_pk" type="pk-constr" table="public.&quot;Doctor&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_User" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="Doctor_uq" index="2"/>
+		<object name="User_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="Doctor_has_one_User" type="rel11" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#a7dde4"
+	 src-table="public.&quot;Doctor&quot;"
+	 dst-table="public.&quot;User&quot;"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="2.1312" y="1.41434"/>
+	</label>
+</relationship>
+
+<table name="Patient" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="240" y="160"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="blood_type" not-null="true">
+		<type name="varchar" length="3"/>
+	</column>
+	<constraint name="Patient_pk" type="pk-constr" table="public.&quot;Patient&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Ailment" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="240" y="760"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="description">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="Ailment_pk" type="pk-constr" table="public.&quot;Ailment&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Patient_has_one_User" type="rel11" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#69fd2c"
+	 src-table="public.&quot;Patient&quot;"
+	 dst-table="public.&quot;User&quot;"
+	 src-required="false" dst-required="true"/>
+
+<table name="Patient_ailment" layer="0" collapse-mode="2" max-obj-count="4">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="200" y="460"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="current" not-null="true">
+		<type name="bool" length="0"/>
+	</column>
+	<constraint name="Patient_ailment_pk" type="pk-constr" table="public.&quot;Patient_ailment&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Patient_has_many_Patient_ailment" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f32066"
+	 src-table="public.&quot;Patient&quot;"
+	 dst-table="public.&quot;Patient_ailment&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-4.49796" y="8.01434"/>
+	</label>
+</relationship>
+
+<relationship name="Ailment_has_many_Patient_ailment" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#252b79"
+	 src-table="public.&quot;Ailment&quot;"
+	 dst-table="public.&quot;Patient_ailment&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Cita" layer="0" collapse-mode="2" max-obj-count="6">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="680" y="380"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="date" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="Cita_pk" type="pk-constr" table="public.&quot;Cita&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Specialty" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1300" y="460"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="Description">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="Specialty_pk" type="pk-constr" table="public.&quot;Specialty&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Specialty_has_many_Doctor" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#cd9a38"
+	 src-table="public.&quot;Specialty&quot;"
+	 dst-table="public.&quot;Doctor&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-4.03744" y="-8.58566"/>
+	</label>
+</relationship>
+
+<table name="Medical_consultation" layer="0" collapse-mode="2" max-obj-count="4">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="780" y="760"/>
+	<column name="id" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="Description">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="Medical_consultation_pk" type="pk-constr" table="public.&quot;Medical_consultation&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Patient_has_many_Cita" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#29ed00"
+	 src-table="public.&quot;Patient&quot;"
+	 dst-table="public.&quot;Cita&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Specialty_has_many_Medical_consultation" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#809499"
+	 src-table="public.&quot;Specialty&quot;"
+	 dst-table="public.&quot;Medical_consultation&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Cita_has_one_Medical_consultation" type="rel11" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#11d1d8"
+	 src-table="public.&quot;Cita&quot;"
+	 dst-table="public.&quot;Medical_consultation&quot;"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="Doctor_has_many_Cita" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#bb9f80"
+	 src-table="public.&quot;Doctor&quot;"
+	 dst-table="public.&quot;Cita&quot;"
+	 src-required="true" dst-required="false"/>
+
+</dbmodel>
