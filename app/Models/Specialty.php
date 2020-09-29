@@ -13,4 +13,12 @@ class Specialty extends Model
      	'name',
      	'description',
     ];
+
+    public function doctors(){
+    	return $this->hasMany('app\Models\Doctor');
+    }
+
+    public function medical_consultations(){
+    	return $this->hasMany('App\Model\Medical_consultation');
+    }
 }

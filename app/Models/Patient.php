@@ -13,4 +13,16 @@ class Patient extends Model
      	'blood_type',
      	'user_id',
     ];
+
+    public function user(){
+        return $this->hasOne('App\Models\User');
+    }
+
+    public function ailments(){
+    	return $this->belongsToMany('App\Models\Ailment')->withTimestamps()->withPivot('current');
+    }
+
+    public function appointments(){
+    	return $this->hasMany('App\Model\Appointment');
+    }
 }
