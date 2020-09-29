@@ -58,7 +58,15 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        $viewInjection=[
+            'patient'=>$patient,
+            'method'=>'GET',
+            'route'=>'patients.index',
+            'buttonText'=>'Volver',
+            'rfcRequired'=>null,
+            'readOnly'=>'readonly',
+        ];
+        return view('patient.form',$viewInjection);
     }
 
     /**

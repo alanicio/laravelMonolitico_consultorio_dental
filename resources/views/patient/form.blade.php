@@ -2,6 +2,7 @@
 
 @section('modelFields')
 	<div class="form-group col-md-2">
+    @if(!$readOnly)
       <label for="blood_type">Tipo de sangre</label>
       <select id="blood_type" name="blood_type" class="form-control">
         <option selected>--blood type--</option>
@@ -14,13 +15,17 @@
         <option value="AB+">AB+</option>
         <option value="AB-">AB-</option>
       </select>
-    </div>
+    @else
+      <label for="last_name">Tipo de sangre</label>
+      <input type="text" class="form-control" id="blood_type" name="blood_type" readonly="" value="{{isset($patient)?$patient->blood_type:null}}">
+    @endif
+  </div>
 
-    <div class="form-group col-md-2">
-      <label for="ailments">Padecimientos previos</label>
-      <select id="ailments" name="ailments" class="form-control">
-        <option selected>--</option>
-        <option>...</option>
-      </select>
-    </div>
+  <div class="form-group col-md-2">
+    <label for="ailments">Padecimientos previos</label>
+    <select id="ailments" name="ailments" class="form-control">
+      <option selected>--</option>
+      <option>...</option>
+    </select>
+  </div>
 @endsection

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+	<link rel="stylesheet" href="{{ URL::asset('css/index.css') }}" />
+	<script type="text/javascript" src="{{ URL::asset('js/index.js') }}"></script>
 	<table class="table">
 	  <thead>
 	    <tr>
@@ -17,16 +19,31 @@
 	  <tbody>
 	  	@foreach($patients as $patient)
 		  	<tr>
-		      <th scope="row">{{$patient->id}}</th>
-		      <td>{{$patient->user->name}}</td>
-		      <td>{{$patient->user->last_name}}</td>
-		      <td>{{$patient->blood_type}}</td>
-		      <td>{{$patient->user->birthdate}}</td>
-		      <td>{{$patient->user->phone_number}}</td>
-		      <td>{{$patient->user->email}}</td>
+		      <th scope="row" onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->id}}</th>
+		      <td onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->user->name}}</td>
+		      <td onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->user->last_name}}</td>
+		      <td onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->blood_type}}</td>
+		      <td onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->user->birthdate}}</td>
+		      <td onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->user->phone_number}}</td>
+		      <td onclick="redirectToShow(`{{route('patients.show',$patient->id)}}`)">{{$patient->user->email}}</td>
 		      <td>
-		      	<i class="fas fa-edit"></i>
-		      	<i class="fas fa-trash-alt"></i>
+		      	<div>
+			      	<a class="dropdown-item" href="{{route('patients.edit',$patient->id)}}">
+			      		<i class="fas fa-edit"></i>
+			      	</a>
+			    </div>
+			    <div>
+			      	<form action="{{route('patients.destroy',$patient->id)}}" method="DELETE">
+			      		<a class="dropdown-item" type="submit">
+			      			<i class="fas fa-trash-alt"></i>
+			      		</a>
+			      	</form>
+			    </div>
+			    <div>
+			      	<a class="dropdown-item" href="{{route('patients.show',$patient->id)}}">
+			      		<i class="fas fa-eye"></i>
+			      	</a>
+			    </div>
 		      </td>
 		    </tr>
 	  	@endForeach
