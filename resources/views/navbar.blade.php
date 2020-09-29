@@ -26,7 +26,7 @@
           <a class="dropdown-item" href="{{route('specialties.index')}}">Mostrar especialidades</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{route('doctors.create')}}">Agregar</a>
-          <a class="dropdown-item" href="#">Mostrar</a>
+          <a class="dropdown-item" href="{{route('doctors.index')}}">Mostrar</a>
         </div>
       </li>
 

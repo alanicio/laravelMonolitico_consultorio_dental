@@ -16,14 +16,14 @@ class Doctor extends Model
     ];
 
     public function user(){
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function specialty(){
-    	return $this->belongsTo('App\Model\Specialty');
+    	return $this->belongsTo('App\Models\Specialty');
     }
 
     public function appointments(){
-    	return $this->hasMany('App\Model\Appointment');
+    	return $this->hasMany('App\Models\Appointment');
     }
 }

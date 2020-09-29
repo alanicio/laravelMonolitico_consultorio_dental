@@ -61,6 +61,7 @@ class PatientController extends Controller
     {
         $viewInjection=[
             'patient'=>$patient,
+            'user'=>$patient->user,
             'method'=>'GET',
             'route'=>'patients.index',
             'routeParameter'=>null,
@@ -81,6 +82,7 @@ class PatientController extends Controller
     {
         $viewInjection=[
             'patient'=>$patient,
+            'user'=>$patient->user,
             'method'=>'PUT',
             'route'=>'patients.update',
             'routeParameter'=>$patient->id,

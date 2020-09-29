@@ -16,7 +16,7 @@
         <option value="AB-" {{isset($patient)?$patient->blood_type=='AB-'?'selected':null:null}}>AB-</option>
       </select>
     @else
-      <label for="last_name">Tipo de sangre</label>
+      <label for="blood_type">Tipo de sangre</label>
       <input type="text" class="form-control" id="blood_type" name="blood_type" readonly="" value="{{isset($patient)?$patient->blood_type:null}}">
     @endif
   </div>

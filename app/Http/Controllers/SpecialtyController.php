@@ -44,7 +44,7 @@ class SpecialtyController extends Controller
      */
     public function store(Request $request)
     {
-        $specialty=new specialty($request->all());
+        $specialty=new Specialty($request->all());
         $specialty->save();
         return $this->index();
     }
