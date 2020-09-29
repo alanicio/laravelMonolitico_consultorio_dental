@@ -24,7 +24,15 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        $viewInjection=[
+            'method'=>'POST',
+            'route'=>'doctors.store',
+            'routeParameter'=>null,
+            'buttonText'=>'Guardar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+        ];
+        return view('doctor.form',$viewInjection);
     }
 
     /**

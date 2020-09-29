@@ -14,7 +14,8 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        //
+        $specialties=Specialty::all();
+        return view('specialty.index',['specialties'=>$specialties]);
     }
 
     /**
@@ -24,7 +25,15 @@ class SpecialtyController extends Controller
      */
     public function create()
     {
-        //
+        $viewInjection=[
+            'method'=>'POST',
+            'route'=>'specialties.store',
+            'routeParameter'=>null,
+            'buttonText'=>'Guardar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+        ];
+        return view('specialty.form',$viewInjection);
     }
 
     /**
@@ -35,7 +44,9 @@ class SpecialtyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $specialty=new specialty($request->all());
+        $specialty->save();
+        return $this->index();
     }
 
     /**
@@ -46,7 +57,16 @@ class SpecialtyController extends Controller
      */
     public function show(Specialty $specialty)
     {
-        //
+        $viewInjection=[
+            'specialty'=>$specialty,
+            'method'=>'GET',
+            'route'=>'specialties.index',
+            'routeParameter'=>null,
+            'buttonText'=>'Volver',
+            'rfcRequired'=>null,
+            'readOnly'=>'readonly',
+        ];
+        return view('specialty.form',$viewInjection);
     }
 
     /**
@@ -57,7 +77,16 @@ class SpecialtyController extends Controller
      */
     public function edit(Specialty $specialty)
     {
-        //
+        $viewInjection=[
+            'specialty'=>$specialty,
+            'method'=>'PUT',
+            'route'=>'specialties.update',
+            'routeParameter'=>$specialty->id,
+            'buttonText'=>'Actualizar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+        ];
+        return view('specialty.form',$viewInjection);
     }
 
     /**
@@ -69,7 +98,8 @@ class SpecialtyController extends Controller
      */
     public function update(Request $request, Specialty $specialty)
     {
-        //
+        $specialty->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -80,6 +110,7 @@ class SpecialtyController extends Controller
      */
     public function destroy(Specialty $specialty)
     {
-        //
+        $specialty->delete();
+        return $this->index();
     }
 }

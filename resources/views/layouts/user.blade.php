@@ -2,8 +2,6 @@
 
 @section('content')
 	<link rel="stylesheet" href="{{ URL::asset('css/form.css') }}" />
-	{{$method}}
-	{{route($route,$routeParameter)}}
 	<div class="card">
 		<form method="{{$method=='PUT'?'POST':$method}}" action="{{route($route,$routeParameter)}}">
 			@csrf

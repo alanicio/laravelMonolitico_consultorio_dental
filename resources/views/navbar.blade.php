@@ -22,7 +22,10 @@
           Doctores
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Agregar</a>
+          <a class="dropdown-item" href="{{route('specialties.create')}}">Agregar especialidad</a>
+          <a class="dropdown-item" href="{{route('specialties.index')}}">Mostrar especialidades</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{route('doctors.create')}}">Agregar</a>
           <a class="dropdown-item" href="#">Mostrar</a>
         </div>
       </li>

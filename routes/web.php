@@ -18,6 +18,8 @@ Route::get('/', function () {
 })->name('home')->middleware('auth');
 
 Route::resource('patients', App\Http\Controllers\PatientController::class)->middleware('auth');
+Route::resource('doctors', App\Http\Controllers\DoctorController::class)->middleware('auth');
+Route::resource('specialties', App\Http\Controllers\SpecialtyController::class)->middleware('auth');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
