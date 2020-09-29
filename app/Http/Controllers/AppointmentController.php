@@ -68,12 +68,10 @@ class AppointmentController extends Controller
     {
         $viewInjection=[
             'appointment'=>$appointment,
-            'user'=>$appointment->user,
             'method'=>'GET',
             'route'=>'appointments.index',
             'routeParameter'=>null,
             'buttonText'=>'Volver',
-            'rfcRequired'=>null,
             'readOnly'=>'readonly',
         ];
         return view('appointment.form',$viewInjection);
@@ -97,6 +95,8 @@ class AppointmentController extends Controller
             'rfcRequired'=>null,
             'readOnly'=>null,
             'medical_consultations'=>Medical_consultation::all(),
+            'patients'=>Patient::all(),
+            'doctors'=>Doctor::all(),
         ];
         return view('appointment.form',$viewInjection);
     }
@@ -110,7 +110,8 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        $appointment->user->update($request->all());
+        $appointment->patient_id=$request->patient;
+        $appointment->doctor_id=$request->doctor;
         $appointment->medical_consultation_id=$request->medical_consultation;
         $appointment->update($request->all());
         return $this->index();

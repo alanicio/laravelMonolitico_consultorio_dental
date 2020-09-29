@@ -27,7 +27,7 @@
 				  </select>
 				@else
 				  <label for="patient">Paciente</label>
-				  <input type="text" class="form-control" id="patient" name="patient" readonly="" value="{{isset($appointment)?$appointment->patient->name:null}}">
+				  <input type="text" class="form-control" id="patient" name="patient" readonly="" value="{{isset($appointment)?$appointment->patient->user->name.' '.$appointment->patient->user->last_name:null}}">
 				@endif
 			</div>
 
@@ -49,7 +49,7 @@
 			<div class="form-group col-md-2">
 				@if(!$readOnly)
 				  <label for="doctor">Doctor asignado</label>
-				  <select id="doctor" name="doctor" class="form-control" required="" disabled="">
+				  <select id="doctor" name="doctor" class="form-control" required="" {{!isset($appointment)?'disabled=""':null}}>
 				    <option {{isset($appointment)?null:'selected'}}>--asignar doctor--</option>
 				    @foreach($doctors as $doctor)
 				    	<option value="{{$doctor->id}}" {{isset($appointment)?$appointment->doctor->id==$doctor->id?'selected':null:null}}>
@@ -59,7 +59,7 @@
 				  </select>
 				@else
 				  <label for="doctor">doctor asignado</label>
-				  <input type="text" class="form-control" id="doctor" name="doctor" readonly="" value="{{isset($appointment)?$appointment->doctor->name:null}}">
+				  <input type="text" class="form-control" id="doctor" name="doctor" readonly="" value="{{isset($appointment)?$appointment->doctor->user->name.' '.$appointment->doctor->user->last_name:null}}">
 				@endif
 			</div>			
 
@@ -67,10 +67,12 @@
 		  <button type="submit" class="btn btn-primary">{{$buttonText}}</button>
 		</form>
 	</div>
-	<script type="text/javascript">
-		var doctors={!! json_encode($doctors->toArray()) !!}
-		var medical_consultations={!! json_encode($medical_consultations->toArray()) !!}
-	</script>
-	<script type="text/javascript" src="{{ URL::asset('js/appointmentForm.js') }}"></script>
+	@isset($doctors)
+		<script type="text/javascript">
+			var doctors={!! json_encode($doctors->toArray()) !!}
+			var medical_consultations={!! json_encode($medical_consultations->toArray()) !!}
+		</script>
+		<script type="text/javascript" src="{{ URL::asset('js/appointmentForm.js') }}"></script>
+	@endif
 @endsection
 	
