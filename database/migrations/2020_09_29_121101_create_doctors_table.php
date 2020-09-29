@@ -19,7 +19,7 @@ class CreateDoctorsTable extends Migration
             $table->unsignedBigInteger('specialty_id');
             $table->foreign('specialty_id')->references('id')->on('specialties');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

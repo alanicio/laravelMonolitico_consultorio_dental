@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Medical_consultation;
+use App\Models\Patient;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -14,7 +17,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+        $appointments=Appointment::all();
+        return view('appointment.index',['appointments'=>$appointments]);
     }
 
     /**
@@ -24,7 +28,18 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        //
+        $viewInjection=[
+            'method'=>'POST',
+            'route'=>'appointments.store',
+            'routeParameter'=>null,
+            'buttonText'=>'Guardar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+            'medical_consultations'=>Medical_consultation::all(),
+            'patients'=>Patient::all(),
+            'doctors'=>Doctor::all(),
+        ];
+        return view('appointment.form',$viewInjection);
     }
 
     /**
@@ -35,7 +50,11 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $appointment=new Appointment($request->all());
+        $appointment->user_id=User::create($request->all())->id;
+        $appointment->medical_consultation_id=$request->medical_consultation;
+        $appointment->save();
+        return $this->index();
     }
 
     /**
@@ -46,7 +65,17 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        //
+        $viewInjection=[
+            'appointment'=>$appointment,
+            'user'=>$appointment->user,
+            'method'=>'GET',
+            'route'=>'appointments.index',
+            'routeParameter'=>null,
+            'buttonText'=>'Volver',
+            'rfcRequired'=>null,
+            'readOnly'=>'readonly',
+        ];
+        return view('appointment.form',$viewInjection);
     }
 
     /**
@@ -57,7 +86,18 @@ class AppointmentController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        //
+        $viewInjection=[
+            'appointment'=>$appointment,
+            'user'=>$appointment->user,
+            'method'=>'PUT',
+            'route'=>'appointments.update',
+            'routeParameter'=>$appointment->id,
+            'buttonText'=>'Actualizar',
+            'rfcRequired'=>null,
+            'readOnly'=>null,
+            'medical_consultations'=>Medical_consultation::all(),
+        ];
+        return view('appointment.form',$viewInjection);
     }
 
     /**
@@ -69,7 +109,10 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        $appointment->user->update($request->all());
+        $appointment->medical_consultation_id=$request->medical_consultation;
+        $appointment->update($request->all());
+        return $this->index();
     }
 
     /**
@@ -80,6 +123,7 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        //
+        $appointment->user->delete();
+        return $this->index();
     }
 }

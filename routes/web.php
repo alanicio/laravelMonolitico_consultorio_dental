@@ -21,6 +21,7 @@ Route::resource('patients', App\Http\Controllers\PatientController::class)->midd
 Route::resource('doctors', App\Http\Controllers\DoctorController::class)->middleware('auth');
 Route::resource('specialties', App\Http\Controllers\SpecialtyController::class)->middleware('auth');
 Route::resource('medical_consultations', App\Http\Controllers\MedicalConsultationController::class)->middleware('auth');
+Route::resource('appointments', App\Http\Controllers\AppointmentController::class)->middleware('auth');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

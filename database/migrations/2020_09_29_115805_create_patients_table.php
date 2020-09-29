@@ -18,7 +18,7 @@ class CreatePatientsTable extends Migration
             $table->string('blood_type',3);
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

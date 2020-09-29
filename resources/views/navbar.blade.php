@@ -45,8 +45,8 @@
           Citas
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Agregar</a>
-          <a class="dropdown-item" href="#">Mostrar</a>
+          <a class="dropdown-item" href="{{route('appointments.create')}}">Agregar</a>
+          <a class="dropdown-item" href="{{route('appointments.index')}}">Mostrar</a>
         </div>
       </li>
 

@@ -120,7 +120,7 @@ class DoctorController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
-        $doctor->delete();
+        $doctor->user->delete();
         return $this->index();
     }
 }
