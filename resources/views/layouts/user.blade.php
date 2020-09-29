@@ -1,52 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-	<form method="{{$method}}">
-	  <div class="form-row">
-	    <div class="form-group col-md-6">
-	      <label for="inputEmail4">Email</label>
-	      <input type="email" class="form-control" id="inputEmail4">
-	    </div>
-	    <div class="form-group col-md-6">
-	      <label for="inputPassword4">Password</label>
-	      <input type="password" class="form-control" id="inputPassword4">
-	    </div>
-	  </div>
-	  <div class="form-group">
-	    <label for="inputAddress">Address</label>
-	    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-	  </div>
-	  <div class="form-group">
-	    <label for="inputAddress2">Address 2</label>
-	    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-	  </div>
-	  <div class="form-row">
-	    <div class="form-group col-md-6">
-	      <label for="inputCity">City</label>
-	      <input type="text" class="form-control" id="inputCity">
-	    </div>
-	    <div class="form-group col-md-4">
-	      <label for="inputState">State</label>
-	      <select id="inputState" class="form-control">
-	        <option selected>Choose...</option>
-	        <option>...</option>
-	      </select>
-	    </div>
-	    <div class="form-group col-md-2">
-	      <label for="inputZip">Zip</label>
-	      <input type="text" class="form-control" id="inputZip">
-	    </div>
-	  </div>
-	  <div class="form-group">
-	    <div class="form-check">
-	      <input class="form-check-input" type="checkbox" id="gridCheck">
-	      <label class="form-check-label" for="gridCheck">
-	        Check me out
-	      </label>
-	    </div>
-	  </div>
-	  @yield('modelFields')
-	  <button type="submit" class="btn btn-primary">Sign in</button>
-	</form>
+	<link rel="stylesheet" href="{{ URL::asset('css/form.css') }}" />
+	<div class="card">
+		<form method="{{$method}}">
+		  <div class="form-row">
+
+		  	<div class="form-group col-md-2">
+		      <label for="name">Nombre</label>
+		      <input type="text" class="form-control" id="name" name="name">
+		    </div>
+
+		    <div class="form-group col-md-2">
+		      <label for="last_name">Apellidos</label>
+		      <input type="text" class="form-control" id="last_name" name="last_name">
+		    </div>
+
+		    <div class="form-group col-md-2">
+		      <label for="phone_number">Telefono</label>
+		      <input type="text" class="form-control" id="phone_number" name="phone_number">
+		    </div>
+
+		    <div class="form-group col-md-2">
+		      <label for="email">Email</label>
+		      <input type="email" class="form-control" id="email" name="email">
+		    </div>
+
+		    <div class="form-group col-md-2">
+		      <label for="birthdate">Fecha de nacimiento</label>
+		      <input type="date" class="form-control" id="birthdate" name="birthdate">
+		    </div>
+
+		    <div class="form-group col-md-2">
+		      <label for="password">Password</label>
+		      <input type="password" class="form-control" id="password" name="password">
+		    </div>
+
+		    <div class="form-group col-md-2">
+		      <label for="rfc">RFC</label>
+		      <input type="text" class="form-control" id="rfc" name="rfc">
+		    </div>
+		    @yield('modelFields')
+		  </div>
+		  <button type="submit" class="btn btn-primary">Sign in</button>
+		</form>
+	</div>
 @endsection
 	
