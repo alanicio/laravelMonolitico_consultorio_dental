@@ -18,7 +18,7 @@ class CreateMedicalConsultationsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->unsignedBigInteger('specialty_id');
-            $table->foreign('specialty_id')->references('id')->on('specialties');
+            $table->foreign('specialty_id')->references('id')->on('specialties')->onDelete('cascade');
             $table->timestamps();
         });
     }

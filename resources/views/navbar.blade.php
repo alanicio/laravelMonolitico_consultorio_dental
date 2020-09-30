@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<link rel="stylesheet" href="{{ URL::asset('css/navbar.css') }}" />
+<nav class="navbar navbar-expand-lg navbar-light customNavBar">
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">

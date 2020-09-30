@@ -17,7 +17,9 @@
 <body>
     @include('navbar')
     <div class="content">
-    	@yield('content')
+        <div class="card">
+            @yield('content')
+        </div>
     </div>
 </body>
 </html>

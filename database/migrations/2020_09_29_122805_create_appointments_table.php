@@ -17,11 +17,11 @@ class CreateAppointmentsTable extends Migration
             $table->id();
             $table->date('date');
             $table->unsignedBigInteger('patient_id');
-            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->unsignedBigInteger('medical_consultation_id');
-            $table->foreign('medical_consultation_id')->references('id')->on('medical_consultations');
+            $table->foreign('medical_consultation_id')->references('id')->on('medical_consultations')->onDelete('cascade');
             $table->unsignedBigInteger('doctor_id');
-            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->timestamps();
         });
     }

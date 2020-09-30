@@ -1,0 +1,16 @@
+.clinic{
+	background-image: url("../assets/images/clinic.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 400px;
+	width: 100%;
+	height: 400px;	
+}
+.welcome{
+	background-image: url("../assets/images/bienvenido.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 300px;
+	width: 100%;
+	height: 200px;
+}

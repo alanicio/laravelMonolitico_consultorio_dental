@@ -2,11 +2,12 @@ td:last-child div{
 	display: inline-block !important;
 }
 
-a:hover, button:hover{
+tbody a:hover,tbody button:hover{
 	color: #fd7e14 !important;
 }
 
 tbody tr:hover{
-	background-color: white;
+	background-color: #3d3d3d;
+	color: white;
 	cursor: pointer;
 }

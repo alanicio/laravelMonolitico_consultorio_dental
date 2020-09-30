@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    ¡Has inciado sesión!
+	<link rel="stylesheet" href="{{ URL::asset('css/home.css') }}" />
+	<div class="clinic">
+    </div>
+    <div class="welcome">
+    </div>
 @endsection

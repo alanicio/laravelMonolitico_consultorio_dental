@@ -17,9 +17,9 @@ class CreatePatientAilmentTable extends Migration
             $table->id();
             $table->boolean('current');
             $table->unsignedBigInteger('patient_id');
-            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->unsignedBigInteger('ailment_id');
-            $table->foreign('ailment_id')->references('id')->on('ailments');
+            $table->foreign('ailment_id')->references('id')->on('ailments')->onDelete('cascade');
             $table->timestamps();
         });
     }

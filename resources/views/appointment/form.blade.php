@@ -2,7 +2,7 @@
 
 @section('content')
 	<link rel="stylesheet" href="{{ URL::asset('css/form.css') }}" />
-	<div class="card">
+	<div>
 		<form method="{{$method=='PUT'?'POST':$method}}" action="{{route($route,$routeParameter)}}">
 			@csrf
 			@method($method)
