@@ -37,7 +37,7 @@ class AppointmentController extends Controller
             'readOnly'=>null,
             'medical_consultations'=>Medical_consultation::all(),
             'patients'=>Patient::all(),
-            'doctors'=>Doctor::all(),
+            'doctors'=>Doctor::with('user')->get(),
         ];
         return view('appointment.form',$viewInjection);
     }
@@ -96,7 +96,7 @@ class AppointmentController extends Controller
             'readOnly'=>null,
             'medical_consultations'=>Medical_consultation::all(),
             'patients'=>Patient::all(),
-            'doctors'=>Doctor::all(),
+            'doctors'=>Doctor::with('user')->get(),
         ];
         return view('appointment.form',$viewInjection);
     }
@@ -125,7 +125,7 @@ class AppointmentController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        $appointment->user->delete();
+        $appointment->delete();
         return $this->index();
     }
 }

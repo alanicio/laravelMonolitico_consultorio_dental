@@ -51,11 +51,15 @@
 				  <label for="doctor">Doctor asignado</label>
 				  <select id="doctor" name="doctor" class="form-control" required="" {{!isset($appointment)?'disabled=""':null}}>
 				    <option {{isset($appointment)?null:'selected'}}>--asignar doctor--</option>
-				    @foreach($doctors as $doctor)
-				    	<option value="{{$doctor->id}}" {{isset($appointment)?$appointment->doctor->id==$doctor->id?'selected':null:null}}>
-				    		{{$doctor->user->name}} {{$doctor->user->last_name}}
-				    	</option>
-				    @endforeach
+				    @isset($appointment)
+					    @foreach($doctors as $doctor)
+					    	@if($doctor->specialty_id==$appointment->medical_consultation->specialty_id)
+						    	<option value="{{$doctor->id}}" {{isset($appointment)?$appointment->doctor->id==$doctor->id?'selected':null:null}}>
+						    		{{$doctor->user->name}} {{$doctor->user->last_name}}
+						    	</option>
+						    @endif
+					    @endforeach
+					@endisset
 				  </select>
 				@else
 				  <label for="doctor">doctor asignado</label>
